@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,18 +9,29 @@
     <link rel="stylesheet" href="style.css">
     <title>WeatherDay</title>
 </head>
+
 <body>
-<div id="display">
-    <div id="location">
-        This is Your location.
+    <div class="container" id="display">
+        <div id="city">City Name</div>
+        <div id="current">Sun, Clouds, Rain</div>
+        <div id="temp">Temp</div>
+        <div id="wind">Wind Speed</div>
+        <div id="summary">Summary</div>
+        <!-- 
+        <div id="max">Temp Max</div>
+        <div id="min">Temp Min</div>
+        <div id="5day">5 Day Forecast</div>
+        -->
+        <button id="far" class="btn">Click for Farenheight</button>
+        <button id="cel" class="btn">Click for Celsius</button>
     </div>
-</div>
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="index.js"></script>
     <script src="key.js"></script>
 
-    
+
 </body>
+
 </html>
