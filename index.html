@@ -7,29 +7,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <title>WeatherDay</title>
+    <title>WeatherToday</title>
 </head>
 
-<body>
-    <div class="container" id="display">
-        <div id="city">City Name</div>
-        <div id="current">Sun, Clouds, Rain</div>
-        <div id="temp">Temp</div>
-        <div id="wind">Wind Speed</div>
-        <div id="summary">Summary</div>
-        <!-- 
-        <div id="max">Temp Max</div>
-        <div id="min">Temp Min</div>
-        <div id="5day">5 Day Forecast</div>
-        -->
-        <button id="far" class="btn">Click for Farenheight</button>
-        <button id="cel" class="btn">Click for Celsius</button>
-    </div>
+<body class="container-fluid image">
+    <div class="container-fluid text-center" id="display">
+        <h1 id="title" class="bold">WeatherToday</h1>
+        <div class="row">
+            <p class="info bold">City Name</p>
+            <div id="city" class="info2"></div>
+            <p class="info bold">Current Conditions</p>
+            <div id="current bold" class="info2"></div>
+            <img id="icon" src=""></img>
+            <p class="info bold">Temperature</p>
+            <div id="temp" class="info2"></div>
+            <p class="info bold">Wind Speed</p>
+            <div id="wind" class="info2"></div>
+        </div>
+        <div class="row">
+            <button id="fahr" class="btn bold">Click for Fahrenheight</button>
+            <button id="cel" class="btn bold">Click for Celsius</button>
+        </div>
 
-
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="index.js"></script>
-    <script src="key.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script src="index.js"></script>
+        <script src="key.js"></script>
 
 
 </body>
