@@ -1,58 +1,40 @@
 /*global $ navigator position APIKEY*/
 
-//get lat and lon - location using js
+var lat, long;
+var place = navigator.geolocation;
+//establish the vars lat and long
+//assign navigator.geolocation to place to simplify code
+
+// uses HTML geolocation
 $(document).ready(function() {
-    var lat;
-    var long;
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
+    if (place) {
+        place.getCurrentPosition(function(position) {
             lat = position.coords.latitude;
             long = position.coords.longitude;
-            //$("#location").html("latitude: " + lat + "<br>longitude: " + long);
-            // console.log(lat, long);
-
-            $.ajax({
-                method: "GET",
-                url: "https://api.openweathermap.org/data/2.5/weather",
-                data: { lat: lat, lon: long, units: "imperial", appid: APIKEY },
-                success: function weatherData(data) {
-                    // console.log(data);
-                    $("#city").text(data.name);
-                    $("#current").text(data.weather[0].main);
-                    //$("#temp").text(data.main.temp) + " deg F";
-                    document.getElementById("temp").innerHTML = (data.main.temp) + " deg F";
-                    //$("#wind").text(data.wind.speed) + " MPH";
-                    document.getElementById("wind").innerHTML = (data.wind.speed) + " MPH";
-                    //$("#summary").text(data.weather[0].description);
-                    // $("#icon").src = "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
-                    document.getElementById("icon").src = "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
-
-                    $("#cel").click(function() { //onClick function in jQuery used to convert temp to C
-                        // console.log("your code is running the C onclick function");
-                        var fahr = data.main.temp;
-                        var cels = (fahr - 32) * 0.5556;
-                        var celsiusRounded = Number((cels).toFixed(2)); // reduces decimal to 2 places
-                        //$("#temp").text = celsiusRounded + " deg C"; //didn't work?
-                        document.getElementById("temp").innerHTML = celsiusRounded + " deg C"; //sends result to div
-                        // console.log(cels)
-                        // console.log(celsiusRounded)
-                        // console.log("on click temp Cels finished");
-                        $("#fahr").click(function() { //onClick function uses jQuery to put temp back to Fahr
-                            var fahr = data.main.temp;
-                            document.getElementById("temp").innerHTML = fahr + " deg F";
-                        });
-                    });
-                }
-
-            });
+            weather.geoLocation(lat, long);
         });
+    }
+    else {
+        alert('please allow location')
     }
 });
 
-//5.) add image to background that shows the weather to get bonus points using this format: 
-// .class or #ID {
-//     background: URL("https://i.imgur.com/Xo7TsYQ.jpg") no-repeat center center;
-//     background-size: cover;
-//     height: 100vh;
-//     width: 100vw;
-// }
+//weather handler + ajax call within a function
+var weather = {
+    geoLocation: function() {
+        //method, the URL, and the data to grab
+        $.ajax({
+            method: "GET",
+            url: "https://api.openweathermap.org/data/2.5/weather",
+            data: {lat: lat, lon: long, units: "imperial", appid: APIKEY},
+        //once successful in retreiving the data for given lat + long, this is where to put the data
+        success: function weatherData(data) {
+            $("#city").text(`${data.name}`); //city name
+            $("#current").text(`${data.weather[0].main.toUpperCase()}`); //current coditions
+            $("#icon").html(`<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png"></img>`); //weather icon
+            $("#wind").text(`${data.wind.speed.toFixed(0)} MPH`); //wind speed in MPH no decimals
+            $("#temp").text(`${data.main.temp.toFixed(0)} °F`); //temp in deg F no decimals
+        }
+    }
+    )}
+}
