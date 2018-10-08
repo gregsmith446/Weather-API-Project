@@ -1,5 +1,24 @@
-#weatherInfo {
-    background-color: grey;
-    height: 100vh;
+body{
+    font-family: Montserrat, sans-serif;
 }
 
+#weatherInfo {
+    background: #f46b45;
+    background: -webkit-linear-gradient(to top, #eea849, #f46b45);
+    background: linear-gradient(to top, #eea849, #f46b45);
+    height: 100vh;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#weatherData {
+    display: none;
+}
+
+#loader-img{
+    height: 150px;
+    margin: 0 auto;
+    display: block;
+}
+}
